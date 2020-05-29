@@ -14,5 +14,6 @@ public class StringReverse {
         } else {
             System.out.println("No");
         }
+        sc.close();
     }
 }

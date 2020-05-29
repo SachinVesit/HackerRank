@@ -1,14 +1,25 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
 import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
 
 public class TwoDArray {
 
     private static final Scanner scanner = new Scanner(System.in);
+
+    static int R = 6;
+    static int C = 6;
+
+    static int findMaxSum(int[][] mat) {
+        if (R < 3 || C < 3)
+            return -1;
+        int max_sum = Integer.MIN_VALUE;
+        for (int i = 0; i < R - 2; i++) {
+            for (int j = 0; j < C - 2; j++) {
+                int sum = (mat[i][j] + mat[i][j + 1] + mat[i][j + 2]) + (mat[i + 1][j + 1])
+                        + (mat[i + 2][j] + mat[i + 2][j + 1] + mat[i + 2][j + 2]);
+                max_sum = Math.max(sum, max_sum);
+            }
+        }
+        return max_sum;
+    }
 
     public static void main(String[] args) {
         int[][] arr = new int[6][6];
@@ -22,7 +33,8 @@ public class TwoDArray {
                 arr[i][j] = arrItem;
             }
         }
-
+        int result = findMaxSum(arr);
+        System.out.println(result);
         scanner.close();
     }
 }
